@@ -5,8 +5,10 @@ import {useAuth} from "../context/AuthContext"
 import {useMemo,useState} from "react"
 import AppTitle from "../components/AppTitle"
 import PwdList from "../components/PwdList"
+import { useNavigate } from "react-router-dom"
 
 function HomePage() {
+	const navigate = useNavigate()
 	const [query, setQuery] = useState<string>('')
 	const {
 		state: {passwords},
@@ -24,7 +26,7 @@ function HomePage() {
 	}
 
 	const handleAddNew = () => {
-
+		navigate("/new-password")
 	}
 
 	return (

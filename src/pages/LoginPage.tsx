@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { KeyIcon } from "../components/Icons"
 import { useNavigate } from "react-router-dom"
+import { useAuth } from "../context/AuthContext"
 import InputBasic from "../components/InputBasic"
 import AppTitle from "../components/AppTitle"
 
@@ -8,6 +9,13 @@ function LoginPage() {
 	const navigate = useNavigate()
 	const [email, setEmail] = useState<string>('')
 	const [password, setPassword] = useState<string>('')
+	const {
+		state: {auth}
+	} = useAuth()
+
+	if(auth) {
+		navigate('/home')
+	}
 
 	const handlePassword = (ev: React.ChangeEvent) => {
 		const pwd = ev.currentTarget as HTMLInputElement

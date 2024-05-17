@@ -1,10 +1,11 @@
-import ReactDOM from 'react-dom/client'
 import App from './App'
+import ReactDOM from 'react-dom/client'
 import LoginPage from './pages/LoginPage';
+import NewPage from './pages/NewPage';
 import HomePage from './pages/HomePage';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import './index.css'
 import { AuthProvider } from './context/AuthContext';
+import './index.css'
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: "home",
         element: <HomePage />
+      },
+      {
+        path: "new-password",
+        element: <NewPage />
       }
     ]
   },

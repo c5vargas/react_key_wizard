@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Password } from "../types"
 import { KeyIcon, OpenIcon, UserIcon } from "./Icons"
+import { handleCopy, handleOpen } from "../utils"
 import PwdModal from "./PwdModal"
 
 function PwdList({passwords}: {passwords: Password[]|null|undefined}) {
@@ -20,15 +21,6 @@ function PwdList({passwords}: {passwords: Password[]|null|undefined}) {
 }
 
 function PwdListItem({password,onSelect}:{password: Password, onSelect: (el: Password) => void}) {
-	const handleCopy = async(txt: string) => {
-		await navigator.clipboard.writeText(txt)
-		alert("Texto copiado con éxito")
-	}
-
-	const handleOpen = () => {
-		window.open(password.uri, "_blank")
-	}
-
 	const handleSelect = () => {
 		onSelect(password)
 	}
@@ -45,13 +37,13 @@ function PwdListItem({password,onSelect}:{password: Password, onSelect: (el: Pas
 			</article>
 
 			<div className="flex items-center gap-2 ms-auto">
-				<button className="w-6 h-6" onClick={handleOpen}>
+				<button className="w-6 h-6" onClick={(ev) => handleOpen(ev, password.uri)}>
 					<OpenIcon className="text-gray-400 duration-150 hover:text-gray-50" />
 				</button>
-				<button className="w-6 h-6 [&>*]:" onClick={() => handleCopy(password.name)}>
+				<button className="w-6 h-6 [&>*]:" onClick={(ev) => handleCopy(ev, password.name)}>
 					<UserIcon className="text-gray-400 duration-150 hover:text-gray-50" />
 				</button>
-				<button className="w-6 h-6 [&>*]:" onClick={() => handleCopy(password.password)}>
+				<button className="w-6 h-6 [&>*]:" onClick={(ev) => handleCopy(ev, password.password)}>
 					<KeyIcon className="text-gray-400 duration-150 hover:text-gray-50" />
 				</button>
 			</div>

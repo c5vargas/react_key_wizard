@@ -1,7 +1,8 @@
 export interface Password {
-	id:       number;
+	id:       number|string;
 	password: string;
 	name:     string;
+	username: string;
 	uri:      string;
 	notes:    string;
 }
